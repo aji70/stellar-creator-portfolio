@@ -73,6 +73,8 @@ model User {
   matchNotifications  MatchNotification[]
   auditLogs           AuditLog[]
   bountyTemplates     BountyTemplate[]
+  apiKeys             ApiKey[]
+  endorsementsGiven   Endorsement[] @relation(name: "endorsements_given")
 
   @@index([email])
 }
@@ -129,7 +131,9 @@ model CreatorProfile {
   createdAt         DateTime         @default(now())
   updatedAt         DateTime         @updatedAt
 
-  tierHistory TierHistory[]
+  tierHistory    TierHistory[]
+  availabilities Availability[]
+  endorsements   Endorsement[]
 
   @@index([userId])
   @@index([discipline])
