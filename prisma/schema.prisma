@@ -67,6 +67,9 @@ model User {
   inAppNotifications     InAppNotification[]
   emailDeliveryLogs      EmailDeliveryLog[]
   emailUnsubscribeToken  String? @unique
+  onboardingStep        Int       @default(0)
+  onboardingCompletedAt DateTime?
+  onboardingData        Json?
   matchFeedback       MatchFeedback[]
   matchNotifications  MatchNotification[]
   auditLogs           AuditLog[]
@@ -154,6 +157,8 @@ model ClientProfile {
   userId      String   @unique
   user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   companyName String?
+  projectType String?
+  budgetRange String?
   bio         String?
   avatar      String?
   verified    Boolean  @default(false)
